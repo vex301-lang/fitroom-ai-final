@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: hansin-fashn-booth
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: FASHN_API_KEY
+        sync: false
+      - key: FASHN_API_BASE
+        value: https://api.fashn.ai/v1
+      - key: DEFAULT_RESOLUTION
+        value: 2k
+      - key: DEFAULT_GENERATION_MODE
+        value: balanced

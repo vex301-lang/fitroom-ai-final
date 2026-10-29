@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#123d2e" />
+  <title>한신초 AI 교복 사진 부스</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <main class="booth-shell">
+    <header class="booth-header">
+      <div>
+        <div class="eyebrow">HANSIN ELEMENTARY SCHOOL</div>
+        <h1>AI 교복 사진 부스</h1>
+      </div>
+      <button id="resetBtn" class="reset-btn">다음 체험자</button>
+    </header>
+
+    <section class="step-card">
+      <div class="step-title"><span>1</span> 촬영할 교복을 선택하세요</div>
+      <div class="gender-grid">
+        <button class="gender-card active" data-gender="boy">
+          <img src="/assets/boy_uniform.png" alt="남학생 교복" />
+          <strong>남학생</strong>
+        </button>
+        <button class="gender-card" data-gender="girl">
+          <img src="/assets/girl_uniform.png" alt="여학생 교복" />
+          <strong>여학생</strong>
+        </button>
+      </div>
+    </section>
+
+    <section class="step-card">
+      <div class="step-title"><span>2</span> 사진을 촬영하세요</div>
+      <div class="camera-frame">
+        <video id="video" autoplay playsinline muted></video>
+        <canvas id="captureCanvas" hidden></canvas>
+        <img id="capturedPreview" alt="촬영한 사진" hidden />
+        <div id="cameraPlaceholder" class="camera-placeholder">
+          <div class="camera-icon">📷</div>
+          <p>정면을 바라보고<br />얼굴과 머리카락이 잘 보이게 서 주세요.</p>
+        </div>
+        <div id="countdown" class="countdown" hidden>3</div>
+      </div>
+
+      <div class="big-actions">
+        <button id="startCameraBtn" class="btn primary">카메라 시작</button>
+        <button id="captureBtn" class="btn accent" disabled>3초 후 촬영</button>
+        <button id="retakeBtn" class="btn light" disabled>다시 촬영</button>
+      </div>
+
+      <label class="upload-box">
+        <span>카메라 대신 사진 선택</span>
+        <input id="fileInput" type="file" accept="image/*" capture="user" />
+      </label>
+    </section>
+
+    <section class="generate-card">
+      <label class="refine-toggle"><input id="refineCheck" type="checkbox" checked /> 자연스럽게 보정하기</label>
+      <button id="generateBtn" class="generate-btn" disabled>AI 교복 사진 만들기</button>
+      <div id="statusText" class="status">카메라를 시작하거나 사진을 선택해 주세요.</div>
+    </section>
+
+    <section id="resultSection" class="result-card" hidden>
+      <div class="step-title"><span>3</span> 완성되었습니다</div>
+      <img id="resultImage" class="result-image" alt="AI 교복 사진 결과" />
+      <div class="big-actions">
+        <a id="downloadBtn" class="btn primary" href="#" download="hansin-ai-uniform.jpg">사진 저장</a>
+        <button id="openResultBtn" class="btn light">크게 보기</button>
+        <button id="newPersonBtn" class="btn accent">다음 체험자</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

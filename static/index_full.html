@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>한신초 AI 교복 사진 부스</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <main class="shell">
+    <header class="hero">
+      <div>
+        <div class="eyebrow">HANSIN AI PHOTO BOOTH</div>
+        <h1>한신초 교복 사진 부스</h1>
+        <p>학생 사진을 촬영하면 FASHN API가 교복과 배경에 자연스럽게 어울리는 완성 사진을 생성합니다.</p>
+      </div>
+      <button id="resetBtn" class="ghost">다음 체험자</button>
+    </header>
+
+    <section class="grid">
+      <div class="card">
+        <h2>1. 촬영 준비</h2>
+        <div class="seg" role="tablist" aria-label="성별 선택">
+          <button class="seg-btn active" data-gender="boy">남학생</button>
+          <button class="seg-btn" data-gender="girl">여학생</button>
+        </div>
+        <label class="check"><input id="refineCheck" type="checkbox" checked /> 고품질 배경/자연스러움 보정 사용</label>
+        <div class="mini-note">권장: 체크 유지 (크레딧 추가 사용)</div>
+
+        <div class="preview-wrap">
+          <video id="video" autoplay playsinline muted></video>
+          <canvas id="captureCanvas" hidden></canvas>
+          <img id="capturedPreview" alt="촬영 미리보기" hidden />
+        </div>
+
+        <div class="button-row">
+          <button id="startCameraBtn">카메라 시작</button>
+          <button id="captureBtn" class="secondary" disabled>촬영</button>
+          <button id="retakeBtn" class="ghost" disabled>다시 촬영</button>
+        </div>
+
+        <div class="or">또는 사진 업로드</div>
+        <input id="fileInput" type="file" accept="image/*" capture="user" />
+
+        <div class="status" id="statusText">카메라를 시작하거나 사진을 업로드해 주세요.</div>
+        <button id="generateBtn" class="primary wide" disabled>AI 사진 생성</button>
+      </div>
+
+      <div class="card">
+        <h2>2. 생성 결과</h2>
+        <div class="result-frame">
+          <img id="resultImage" alt="생성 결과" hidden />
+          <div id="resultPlaceholder" class="placeholder">생성된 사진이 여기 표시됩니다.</div>
+        </div>
+        <div class="button-row">
+          <a id="downloadBtn" class="secondary disabled" href="#" download="hansin-photo.jpg" aria-disabled="true">사진 저장</a>
+          <button id="openResultBtn" class="ghost" disabled>새 탭에서 보기</button>
+        </div>
+        <details class="helpbox">
+          <summary>운영 팁</summary>
+          <ul>
+            <li>얼굴과 머리카락이 잘 보이도록 정면에 가깝게 촬영하면 더 자연스럽습니다.</li>
+            <li>고품질 보정을 켜면 더 자연스럽지만 생성 시간이 더 길어질 수 있습니다.</li>
+            <li>결과는 서버의 <code>/results</code>에 일시 저장됩니다. 주기적으로 정리됩니다.</li>
+          </ul>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
